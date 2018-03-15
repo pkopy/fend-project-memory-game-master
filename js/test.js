@@ -5,6 +5,7 @@ const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa
 "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
 "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 let openList = [];
+let matchList = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -48,9 +49,28 @@ function shuffle(array) {
 
 const deckOfCards = document.querySelector('.deck');
 deckOfCards.addEventListener('click', function(evt){
-    showSymbol(evt);
+    if(!(evt.target.className === 'deck')){
+        showSymbol(evt);
+        addCardToOpenList(evt);
+    }
 })
 
 function showSymbol(evt){
     evt.target.classList.add('open', 'show');
+}
+
+function addCardToOpenList(evt){
+    openList.push(evt.target.firstElementChild);
+    if(openList.length === 2 && openList[0].className === openList[1].className){
+        openList[0].parentNode.className = 'card match show';
+        openList[1].parentNode.className = 'card match show';
+        matchList.push(openList[0]);
+        openList = [];
+    }else if(openList.length === 2 && openList[0].className !== openList[1].className){
+        setTimeout(function(){
+            openList[0].parentNode.className = 'card';
+            openList[1].parentNode.className = 'card';
+            openList = [];
+        }, 200)
+    }
 }
