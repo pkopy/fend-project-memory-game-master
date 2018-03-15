@@ -35,7 +35,6 @@ function shuffle(array) {
 }
 
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -50,6 +49,7 @@ function shuffle(array) {
 const deckOfCards = document.querySelector('.deck');
 deckOfCards.addEventListener('click', function(evt){
     showSymbol(evt);
+    addCardToOpenList(evt);
 })
 
 function showSymbol(evt){
@@ -59,6 +59,7 @@ function showSymbol(evt){
 function addCardToOpenList(evt){
     openList.push(evt.target.firstElementChild);
     checkTwoCardsMatch(openList);
+    checkTwoCardsNotMatch(openList);
 }
 
 function checkTwoCardsMatch(array){
@@ -67,4 +68,11 @@ function checkTwoCardsMatch(array){
         array[1].parentNode.className = 'card match show';
         matchList.push(array[0]);
     }    
+}
+
+function checkTwoCardsNotMatch(array){
+    if(array.length === 2 && array[0].className !== array[1].className){
+        array[0].parentNode.className = 'card';
+        array[1].parentNode.className = 'card';
+    }
 }
