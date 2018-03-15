@@ -73,9 +73,11 @@ function checkTwoCardsMatch(array){
 
 function checkTwoCardsNotMatch(array){
     if(array.length === 2 && array[0].className !== array[1].className){
-        array[0].parentNode.className = 'card';
-        array[1].parentNode.className = 'card';
-        clearTheOpenList(array);
+        setTimeout(function(){
+            array[0].parentNode.className = 'card';
+            array[1].parentNode.className = 'card';
+            clearTheOpenList(array);
+        },200);
     }
 }
 
