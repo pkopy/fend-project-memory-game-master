@@ -54,3 +54,8 @@ deckOfCards.addEventListener('click', function(evt){
 function showSymbol(evt){
     evt.target.classList.add('open', 'show');
 }
+
+function addCardToOpenList(evt){
+    openList.push(evt.target.firstElementChild);
+}
+
