@@ -5,6 +5,7 @@ const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa
 "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
 "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 let openList = [];
+let matchList = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -57,5 +58,13 @@ function showSymbol(evt){
 
 function addCardToOpenList(evt){
     openList.push(evt.target.firstElementChild);
+    checkTwoCardsMatch(openList);
 }
 
+function checkTwoCardsMatch(array){
+    if(array.length === 2 && array[0].className === array[1].className){
+        array[0].parentNode.className = 'card match show';
+        array[1].parentNode.className = 'card match show';
+        matchList.push(array[0]);
+    }    
+}
