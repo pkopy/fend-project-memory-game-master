@@ -48,8 +48,10 @@ function shuffle(array) {
 
 const deckOfCards = document.querySelector('.deck');
 deckOfCards.addEventListener('click', function(evt){
-    showSymbol(evt);
-    addCardToOpenList(evt);
+    if(!(evt.target.className === 'deck')){
+        showSymbol(evt);
+        addCardToOpenList(evt);
+    }
 })
 
 function showSymbol(evt){
