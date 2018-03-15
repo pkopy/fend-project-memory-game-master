@@ -12,6 +12,12 @@ const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa
  *   - add each card's HTML to the page
  */
 
+let shuffleListOfCards = shuffle(listOfCards);
+const cards = document.querySelectorAll('.deck li');
+for(i = 0; i < cards.length; i++){
+    cards[i].firstElementChild.className = shuffleListOfCards[i];
+}
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
