@@ -50,12 +50,15 @@ function shuffle(array) {
  */
 
 const deckOfCards = document.querySelector('.deck');
+let startTime;
+let endTime;
 
 deckOfCards.addEventListener('click', function(evt){
     if(!(evt.target.className === 'deck') && !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
         showSymbol(evt);
         addCardToOpenList(evt);
         incrementCounter();
+        timeOfGame();
     }
 })
 
@@ -65,7 +68,6 @@ function showSymbol(evt){
 }
 
 function addCardToOpenList(evt){
-    
     openList.push(evt.target.firstElementChild); 
     checkTwoCardsMatch(openList);
     checkTwoCardsNotMatch(openList);
@@ -106,3 +108,12 @@ function incrementCounter(){
     moveCounterDisplay.innerHTML = counterOfMoves;
 }
 
+function timeOfGame(){
+    if(counterOfMoves === 1){
+        startTime = Date.now();
+    }
+    if(matchList.length === 1){
+        endTime = Date.now() - startTime;
+        console.log(Math.floor(endTime/1000))
+    }
+}
