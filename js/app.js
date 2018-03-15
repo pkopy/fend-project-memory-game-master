@@ -50,8 +50,9 @@ function shuffle(array) {
  */
 
 const deckOfCards = document.querySelector('.deck');
+
 deckOfCards.addEventListener('click', function(evt){
-    if(!(evt.target.className === 'deck')){
+    if(!(evt.target.className === 'deck') && !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
         showSymbol(evt);
         addCardToOpenList(evt);
         incrementCounter();
@@ -60,10 +61,12 @@ deckOfCards.addEventListener('click', function(evt){
 
 function showSymbol(evt){
     evt.target.classList.add('open', 'show');
+    evt.target.isClicked = 1;
 }
 
 function addCardToOpenList(evt){
-    openList.push(evt.target.firstElementChild);
+    
+    openList.push(evt.target.firstElementChild); 
     checkTwoCardsMatch(openList);
     checkTwoCardsNotMatch(openList);
 }
@@ -82,6 +85,8 @@ function checkTwoCardsNotMatch(array){
         setTimeout(function(){
             array[0].parentNode.className = 'card';
             array[1].parentNode.className = 'card';
+            array[0].parentNode.isClicked = 0;
+            array[1].parentNode.isClicked = 0;
             clearTheOpenList(array);
         },200);
     }
@@ -98,6 +103,6 @@ function clearTheOpenList(array){
 
 function incrementCounter(){
     counterOfMoves++;
-    console.log(counterOfMoves)
     moveCounterDisplay.innerHTML = counterOfMoves;
 }
+
