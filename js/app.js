@@ -67,6 +67,7 @@ function checkTwoCardsMatch(array){
         array[0].parentNode.className = 'card match show';
         array[1].parentNode.className = 'card match show';
         matchList.push(array[0]);
+        clearTheOpenList(array);
     }    
 }
 
@@ -74,5 +75,15 @@ function checkTwoCardsNotMatch(array){
     if(array.length === 2 && array[0].className !== array[1].className){
         array[0].parentNode.className = 'card';
         array[1].parentNode.className = 'card';
+        clearTheOpenList(array);
     }
+}
+
+
+function clearTheOpenList(array){
+    while (array.length !== 0){
+        array.pop();
+    }
+    
+    return array;
 }
