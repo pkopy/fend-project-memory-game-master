@@ -65,7 +65,7 @@ deckOfCards.addEventListener('click', function(evt){
 })
 
 function showSymbol(evt){
-    evt.target.classList.add('open', 'show');
+    evt.target.className ='card open show';
     evt.target.isClicked = 1;
 }
 
@@ -87,12 +87,12 @@ function checkTwoCardsMatch(array){
 function checkTwoCardsNotMatch(array){
     if(array.length === 2 && array[0].className !== array[1].className){
         setTimeout(function(){
-            array[0].parentNode.className = 'card';
-            array[1].parentNode.className = 'card';
+            array[0].parentNode.className = 'card close';
+            array[1].parentNode.className = 'card close';
             array[0].parentNode.isClicked = 0;
             array[1].parentNode.isClicked = 0;
             clearTheOpenList(array);
-        },1000);
+        },800);
     }
 }
 
