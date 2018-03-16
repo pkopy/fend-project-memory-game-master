@@ -111,10 +111,16 @@ function clearTheOpenList(array){
     return array;
 }
 
-function incrementCounter(){
-    counterOfMoves++;
-    moveCounterDisplay.innerHTML = counterOfMoves;
+function addRandomSymbolToCard(array){
+    let shuffleListOfCards = shuffle(listOfCards);
+    for(i = 0; i < array.length; i++){
+        array[i].firstElementChild.className = shuffleListOfCards[i];
+    }
 }
+
+/*
+ * Score panel
+ */
 
 function timeOfGame(){
     if(counterOfMoves === 1){
@@ -149,12 +155,16 @@ function resetGame(){
     addRandomSymbolToCard(cards);
 }
 
-function addRandomSymbolToCard(array){
-    let shuffleListOfCards = shuffle(listOfCards);
-    for(i = 0; i < array.length; i++){
-        array[i].firstElementChild.className = shuffleListOfCards[i];
-    }
+function incrementCounter(){
+    counterOfMoves++;
+    moveCounterDisplay.innerHTML = counterOfMoves;
 }
+
+
+/*
+ * Leader Board
+ */
+
 
 function leaderBoardInit() {
     if (!localStorage.leaderBoard) {
@@ -171,3 +181,26 @@ function addScoreToLeaderBoard(obj) {
     data.push(obj);
     localStorage.leaderBoard = JSON.stringify(data)
 }
+
+/*
+ * Animation congratulations popup
+ */
+
+function changeSizeOfElement(element){
+    let countHeight = 0;
+    let countWidth = 0;
+    let id = setInterval(function(){
+    countHeight+=10;
+    countWidth+=20;
+    element.style.display = 'inline';
+    element.style.height = countHeight + 'px';
+    element.style.width = countWidth  + 'px';
+    element.style.opacity = 400/(1200-countHeight*2);
+    element.firstElementChild.style.opacity = 400/(1200-countHeight*2);
+    if(countHeight === 400){
+        clearInterval(id)
+    }
+    }, 10);
+    
+}
+changeSizeOfElement(document.querySelector('.win-popup'))

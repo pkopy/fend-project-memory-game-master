@@ -137,13 +137,16 @@ h1 {
     display: none;
 }
 .win-popup {
-    width: 740px;
-    height: 300px;
-    opacity: 1;
     position: absolute;
     top: 27%;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     background: linear-gradient(160deg, #5cfff1 0%, #cb96f5 100%);
     display: none;
+}
+
+#szmebuldog-image {
+    opacity: 0;
+    text-align: right;
+    padding: 1.5em;
 }
