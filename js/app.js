@@ -54,6 +54,7 @@ let startTime;
 let endTime;
 
 addRandomSymbolToCard(cards);
+leaderBoardInit();
 
 deckOfCards.addEventListener('click', function(evt){
     if(!(evt.target.className === 'deck') && !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
@@ -153,4 +154,20 @@ function addRandomSymbolToCard(array){
     for(i = 0; i < array.length; i++){
         array[i].firstElementChild.className = shuffleListOfCards[i];
     }
+}
+
+function leaderBoardInit() {
+    if (!localStorage.leaderBoard) {
+        localStorage.leaderBoard = JSON.stringify([]);
+    }
+}
+
+function getLeaderBoard() {
+    return JSON.parse(localStorage.leaderBoard); 
+}
+
+function addScoreToLeaderBoard(obj) {
+    let data = JSON.parse(localStorage.leaderBoard);
+    data.push(obj);
+    localStorage.leaderBoard = JSON.stringify(data)
 }
