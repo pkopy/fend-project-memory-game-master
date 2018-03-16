@@ -53,7 +53,7 @@ const deckOfCards = document.querySelector('.deck');
 const starsPanel = document.querySelector('.stars');
 let startTime;
 let endTime;
-console.log(starsPanel)
+
 deckOfCards.addEventListener('click', function(evt){
     if(!(evt.target.className === 'deck') && !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
         showSymbol(evt);
@@ -92,7 +92,7 @@ function checkTwoCardsNotMatch(array){
             array[0].parentNode.isClicked = 0;
             array[1].parentNode.isClicked = 0;
             clearTheOpenList(array);
-        },200);
+        },1000);
     }
 }
 
@@ -121,9 +121,9 @@ function timeOfGame(){
 }
 
 function removeStarFromScorePanel(){
-    if(counterOfMoves === 2){
+    if(counterOfMoves === 20){
         starsPanel.lastElementChild.style.visibility ='hidden';
-    }else if(counterOfMoves === 4){
+    }else if(counterOfMoves === 40){
         starsPanel.lastElementChild.previousElementSibling.style.visibility ='hidden';
     }
 }
