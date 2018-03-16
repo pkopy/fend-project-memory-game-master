@@ -50,15 +50,17 @@ function shuffle(array) {
  */
 
 const deckOfCards = document.querySelector('.deck');
+const starsPanel = document.querySelector('.stars');
 let startTime;
 let endTime;
-
+console.log(starsPanel)
 deckOfCards.addEventListener('click', function(evt){
     if(!(evt.target.className === 'deck') && !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
         showSymbol(evt);
         addCardToOpenList(evt);
         incrementCounter();
         timeOfGame();
+        removeStarFromScorePanel();
     }
 })
 
@@ -112,8 +114,16 @@ function timeOfGame(){
     if(counterOfMoves === 1){
         startTime = Date.now();
     }
-    if(matchList.length === 1){
+    if(matchList.length === 8){
         endTime = Date.now() - startTime;
         console.log(Math.floor(endTime/1000))
+    }
+}
+
+function removeStarFromScorePanel(){
+    if(counterOfMoves === 2){
+        starsPanel.lastElementChild.style.visibility ='hidden';
+    }else if(counterOfMoves === 4){
+        starsPanel.lastElementChild.previousElementSibling.style.visibility ='hidden';
     }
 }
