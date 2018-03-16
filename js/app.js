@@ -53,6 +53,7 @@ function shuffle(array) {
 const deckOfCards = document.querySelector('.deck');
 const starsPanel = document.querySelector('.stars');
 const stars = starsPanel.querySelectorAll('li');
+const restartButton = document.querySelector('.restart')
 let startTime;
 let endTime;
 
@@ -63,8 +64,11 @@ deckOfCards.addEventListener('click', function(evt){
         incrementCounter();
         timeOfGame();
         removeStarFromScorePanel();
-        console.log(evt)
     }
+})
+
+restartButton.addEventListener('click', function(){
+    resetGame();
 })
 
 function showSymbol(evt){
