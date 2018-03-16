@@ -16,12 +16,7 @@ let counterOfMoves = 0;
  *   - add each card's HTML to the page
  */
 
-let shuffleListOfCards = shuffle(listOfCards);
-const cards = document.querySelectorAll('.deck li');
 
-for(i = 0; i < cards.length; i++){
-    cards[i].firstElementChild.className = shuffleListOfCards[i];
-}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -52,10 +47,13 @@ function shuffle(array) {
 
 const deckOfCards = document.querySelector('.deck');
 const starsPanel = document.querySelector('.stars');
+const cards = document.querySelectorAll('.deck li');
 const stars = starsPanel.querySelectorAll('li');
 const restartButton = document.querySelector('.restart')
 let startTime;
 let endTime;
+
+addRandomSymbolToCard(cards);
 
 deckOfCards.addEventListener('click', function(evt){
     if(!(evt.target.className === 'deck') && !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
@@ -146,4 +144,13 @@ function resetGame(){
     counterOfMoves = 0;
     moveCounterDisplay.innerHTML = counterOfMoves;
     matchList = [];
+    openList = [];
+    addRandomSymbolToCard(cards);
+}
+
+function addRandomSymbolToCard(array){
+    let shuffleListOfCards = shuffle(listOfCards);
+    for(i = 0; i < array.length; i++){
+        array[i].firstElementChild.className = shuffleListOfCards[i];
+    }
 }
