@@ -18,6 +18,7 @@ let counterOfMoves = 0;
 
 let shuffleListOfCards = shuffle(listOfCards);
 const cards = document.querySelectorAll('.deck li');
+
 for(i = 0; i < cards.length; i++){
     cards[i].firstElementChild.className = shuffleListOfCards[i];
 }
@@ -51,6 +52,7 @@ function shuffle(array) {
 
 const deckOfCards = document.querySelector('.deck');
 const starsPanel = document.querySelector('.stars');
+const stars = starsPanel.querySelectorAll('li');
 let startTime;
 let endTime;
 
@@ -61,6 +63,7 @@ deckOfCards.addEventListener('click', function(evt){
         incrementCounter();
         timeOfGame();
         removeStarFromScorePanel();
+        console.log(evt)
     }
 })
 
@@ -126,4 +129,17 @@ function removeStarFromScorePanel(){
     }else if(counterOfMoves === 40){
         starsPanel.lastElementChild.previousElementSibling.style.visibility ='hidden';
     }
+}
+
+function resetGame(){
+    for(let card of cards){
+        card.className = "card close"
+        card.isClicked = 0;
+    }
+    for(star of stars){
+        star.style.visibility = 'visible'
+    }
+    counterOfMoves = 0;
+    moveCounterDisplay.innerHTML = counterOfMoves;
+    matchList = [];
 }
