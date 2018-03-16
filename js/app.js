@@ -98,8 +98,8 @@ function checkTwoCardsNotMatch(array){
 
 
 function clearTheOpenList(array){
-    while (array.length !== 0){
-        array.pop();
+    for(let i = 0; i < 2; i++){
+        array.shift();
     }
     
     return array;
