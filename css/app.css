@@ -88,7 +88,6 @@ h1 {
     transform: rotateY(0deg);
     transition: width 2s, height 2s, transform 0.8s;
     background: #2e3d49;
-    cursor: default;
 }
 
 /*
