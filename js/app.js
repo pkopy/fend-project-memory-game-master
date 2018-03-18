@@ -168,8 +168,8 @@ function incrementCounter(){
 
 
 function leaderBoardInit() {
-    var isIE = /*@cc_on!@*/false || !!document.documentMode;
-    var isEdge = !isIE && !!window.StyleMedia;
+    let isIE = /*@cc_on!@*/false || !!document.documentMode;
+    let isEdge = !isIE && !!window.StyleMedia;
     if (!isEdge && !localStorage.leaderBoard) {
         localStorage.leaderBoard = JSON.stringify([])
     }
@@ -193,16 +193,15 @@ function changeSizeOfElement(element){
     let countHeight = 0;
     let countWidth = 0;
     let id = setInterval(function(){
-    countHeight+=10;
-    countWidth+=20;
-    element.style.display = 'inherit';
-    element.style.height = countHeight + 'px';
-    element.style.width = countWidth  + 'px';
-    element.style.opacity = 400/(1200-countHeight*2);
-    element.firstElementChild.style.opacity = 400/(1200-countHeight*2);
-    if(countHeight === 400){
-        clearInterval(id)
-    }
+        countHeight+=10;
+        countWidth+=20;
+        element.style.display = 'inherit';
+        element.style.height = countHeight + 'px';
+        element.style.width = countWidth  + 'px';
+        element.style.opacity = 400/(1200-countHeight*2);
+        if(countHeight === 400){
+            clearInterval(id)
+        }
     }, 10);
     
 }
