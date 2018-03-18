@@ -129,6 +129,7 @@ function timeOfGame(){
     if(matchList.length === 8){
         endTime = Date.now() - startTime;
         console.log(Math.floor(endTime/1000))
+        changeSizeOfElement(document.querySelector('.win-popup'))
     }
 }
 
@@ -194,7 +195,7 @@ function changeSizeOfElement(element){
     let id = setInterval(function(){
     countHeight+=10;
     countWidth+=20;
-    element.style.display = 'inline';
+    element.style.display = 'inherit';
     element.style.height = countHeight + 'px';
     element.style.width = countWidth  + 'px';
     element.style.opacity = 400/(1200-countHeight*2);
@@ -205,4 +206,3 @@ function changeSizeOfElement(element){
     }, 10);
     
 }
-// changeSizeOfElement(document.querySelector('.win-popup'))
