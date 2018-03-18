@@ -167,8 +167,10 @@ function incrementCounter(){
 
 
 function leaderBoardInit() {
-    if (!localStorage.leaderBoard) {
-        localStorage.leaderBoard = JSON.stringify([]);
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    var isEdge = !isIE && !!window.StyleMedia;
+    if (!isEdge && !localStorage.leaderBoard) {
+        localStorage.leaderBoard = JSON.stringify([])
     }
 }
 
@@ -203,4 +205,4 @@ function changeSizeOfElement(element){
     }, 10);
     
 }
-changeSizeOfElement(document.querySelector('.win-popup'))
+// changeSizeOfElement(document.querySelector('.win-popup'))
