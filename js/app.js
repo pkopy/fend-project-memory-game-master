@@ -211,8 +211,7 @@ function increaseOfOpacity(element, opacity){
     element.style.opacity = 0;
     element.style.display = 'inherit';
     let id = setInterval(function () {
-        countOpacity += 0.01;
-
+        countOpacity += 0.02;
         element.style.opacity = countOpacity;
         if (countOpacity >= opacity) {
             clearInterval(id)
