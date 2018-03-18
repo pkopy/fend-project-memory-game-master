@@ -128,8 +128,8 @@ function timeOfGame(){
     }
     if(matchList.length === 8){
         endTime = Date.now() - startTime;
-        console.log(Math.floor(endTime/1000))
-        changeSizeOfElement(document.querySelector('.win-popup'))
+        increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7)
+        changeSizeOfElement(document.querySelector('.win-popup'), 400);
     }
 }
 
@@ -189,7 +189,7 @@ function addScoreToLeaderBoard(obj) {
  * Animation congratulations popup
  */
 
-function changeSizeOfElement(element){
+function changeSizeOfElement(element, heightElement = 400, widthElement = 0){
     let countHeight = 0;
     let countWidth = 0;
     let id = setInterval(function(){
@@ -198,10 +198,25 @@ function changeSizeOfElement(element){
         element.style.display = 'inherit';
         element.style.height = countHeight + 'px';
         element.style.width = countWidth  + 'px';
-        element.style.opacity = 400/(1200-countHeight*2);
-        if(countHeight === 400){
+        element.style.opacity = heightElement/(heightElement * 3 - countHeight * 2);
+        if(countHeight >= heightElement){
             clearInterval(id)
         }
     }, 10);
     
+}
+
+function increaseOfOpacity(element, opacity){
+    let countOpacity = 0
+    element.style.opacity = 0;
+    element.style.display = 'inherit';
+    let id = setInterval(function () {
+        countOpacity += 0.01;
+
+        element.style.opacity = countOpacity;
+        if (countOpacity >= opacity) {
+            clearInterval(id)
+        } 
+    }, 10)
+
 }
