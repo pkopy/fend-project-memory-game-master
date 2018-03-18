@@ -57,7 +57,7 @@ addRandomSymbolToCard(cards);
 leaderBoardInit();
 
 deckOfCards.addEventListener('click', function(evt){
-    if(!(evt.target.className === 'deck') && !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
+    if(!(evt.target.className === 'deck') && (openList.length <= 2)&& !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
         showSymbol(evt);
         addCardToOpenList(evt);
         incrementCounter();
@@ -71,11 +71,16 @@ restartButton.addEventListener('click', function(){
 })
 
 function showSymbol(evt){
-    evt.target.className ='card open show';
-    evt.target.isClicked = 1;
+    // if (openList.length <= 2) {
+        evt.target.className ='card open show';
+        evt.target.isClicked = 1;
+    // }else {
+    //     openList = [];
+    // }
 }
 
 function addCardToOpenList(evt){
+    
     openList.push(evt.target.firstElementChild); 
     checkTwoCardsMatch(openList);
     checkTwoCardsNotMatch(openList);

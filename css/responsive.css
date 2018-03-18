@@ -39,6 +39,6 @@
   .score-panel .restart {
     float: right;
     cursor: pointer;
-    padding-right: 2em;
+    margin-right: 2em;
 }
 }
