@@ -13,6 +13,10 @@
   .deck .card.show {
     font-size: 18px;
   }
+
+  .congratulations h1 {
+    margin: 0;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -40,5 +44,28 @@
     float: right;
     cursor: pointer;
     margin-right: 2em;
-}
+  }
+
+  #szmebuldog-image {
+    display: none;
+  }
+  
+  .win-popup {
+    padding: 1em;
+  }
+  
+  .congratulations {
+    width: 100%;
+  }
+
+  .congratulations h1 {
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+  }
+
+  .congratulations h2 {
+    font-size: 1em;
+    margin: 0;
+  }
 }

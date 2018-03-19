@@ -71,16 +71,11 @@ restartButton.addEventListener('click', function(){
 })
 
 function showSymbol(evt){
-    // if (openList.length <= 2) {
         evt.target.className ='card open show';
         evt.target.isClicked = 1;
-    // }else {
-    //     openList = [];
-    // }
 }
 
 function addCardToOpenList(evt){
-    
     openList.push(evt.target.firstElementChild); 
     checkTwoCardsMatch(openList);
     checkTwoCardsNotMatch(openList);
@@ -126,22 +121,29 @@ function addRandomSymbolToCard(array){
 /*
  * Score panel
  */
-
+console.log(window.innerWidth)
 function timeOfGame(){
     if(counterOfMoves === 1){
         startTime = Date.now();
     }
     if(matchList.length === 8){
         endTime = Date.now() - startTime;
+        let heightElement = 400;
+        if (window.innerWidth < 900) {
+            heightElement = 305;
+        }
+        if (window.innerWidth < 600) {
+            heightElement = 160;
+        }
         increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7)
-        changeSizeOfElement(document.querySelector('.win-popup'), 400);
+        changeSizeOfElement(document.querySelector('.win-popup'), heightElement);
     }
 }
 
 function removeStarFromScorePanel(){
-    if(counterOfMoves === 20){
+    if(counterOfMoves === 30){
         starsPanel.lastElementChild.style.visibility ='hidden';
-    }else if(counterOfMoves === 40){
+    }else if(counterOfMoves === 50){
         starsPanel.lastElementChild.previousElementSibling.style.visibility ='hidden';
     }
 }
@@ -224,3 +226,4 @@ function increaseOfOpacity(element, opacity){
     }, 10)
 
 }
+
