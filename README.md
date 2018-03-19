@@ -4,6 +4,11 @@
 
 * [Instructions](#instructions)
 * [Contributing](#contributing)
+* [Preview](#preview)
+
+## Preview
+
+http://memory.pkopy.pl
 
 ## Instructions
 
