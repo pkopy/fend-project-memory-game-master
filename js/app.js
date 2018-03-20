@@ -52,6 +52,7 @@ const stars = starsPanel.querySelectorAll('li');
 const restartButton = document.querySelector('.restart')
 let startTime;
 let endTime;
+let score;
 
 addRandomSymbolToCard(cards);
 leaderBoardInit();
@@ -123,20 +124,22 @@ function addRandomSymbolToCard(array){
  */
 console.log(window.innerWidth)
 function timeOfGame(){
+
+    // Start game
+
     if(counterOfMoves === 1){
         startTime = Date.now();
     }
+
+    // End game
+
     if(matchList.length === 8){
         endTime = Date.now() - startTime;
-        let heightElement = 400;
-        if (window.innerWidth < 900) {
-            heightElement = 305;
-        }
-        if (window.innerWidth < 600) {
-            heightElement = 160;
-        }
-        increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7)
-        changeSizeOfElement(document.querySelector('.win-popup'), heightElement);
+        score = (100 - Math.floor(endTime/1000)) + (100- counterOfMoves)
+        addScoreToLeaderBoard({time: endTime/1000, score: score})
+        openPopup();
+        let leaderBoard = getLeaderBoard();
+        console.log(leaderBoard);
     }
 }
 
@@ -182,8 +185,17 @@ function leaderBoardInit() {
     }
 }
 
+
+function sortObjectInArray(property) {
+    return (a, b) => (a[property] < b[property]) ? 1 : (a[property] > b[property]) ? -1 : 0;
+}
+    
+
+
 function getLeaderBoard() {
-    return JSON.parse(localStorage.leaderBoard); 
+    let array =  JSON.parse(localStorage.leaderBoard); 
+    array.sort(sortObjectInArray("score"));
+    return array;
 }
 
 function addScoreToLeaderBoard(obj) {
@@ -224,6 +236,20 @@ function increaseOfOpacity(element, opacity){
             clearInterval(id)
         } 
     }, 10)
-
 }
 
+function openPopup() {
+    let heightElement = 400;
+    if (window.innerWidth < 900) {
+        heightElement = 305;
+    }
+    if (window.innerWidth < 450) {
+        heightElement = 160;
+    }
+    increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7)
+    changeSizeOfElement(document.querySelector('.win-popup'), heightElement);
+    document.querySelector('#score-time').innerHTML = (endTime/1000 + ' sec');
+    document.querySelector('#score-value').innerHTML = (score + '.00')
+}
+
+// openPopup()
