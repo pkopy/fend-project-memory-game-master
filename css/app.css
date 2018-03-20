@@ -163,3 +163,22 @@ h1 {
     font-weight: bold;
     margin: 0.5em;
 }
+
+.congratulations table {
+    width: 90%;
+    display: none;
+    padding-left: 2.5em;
+}
+
+/* .congratulations td {
+    width: 100%;
+} */
+
+.congratulations h2 {
+    margin: 0;
+    text-align: right;
+}
+
+.left h2 {
+    text-align: left;
+}

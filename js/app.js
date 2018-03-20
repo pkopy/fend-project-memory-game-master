@@ -221,7 +221,7 @@ function changeSizeOfElement(element, heightElement = 400, widthElement = 0){
         if(countHeight >= heightElement){
             clearInterval(id)
         }
-    }, 10);
+    }, 5);
     
 }
 
@@ -249,7 +249,9 @@ function openPopup() {
     increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7)
     changeSizeOfElement(document.querySelector('.win-popup'), heightElement);
     document.querySelector('#score-time').innerHTML = (endTime/1000 + ' sec');
-    document.querySelector('#score-value').innerHTML = (score + '.00')
+    document.querySelector('#score-value').innerHTML = (score + '.00');
+    setTimeout(function() {
+        document.querySelector('table').style.display = 'inline-table';
+    },1000)
+    
 }
-
-// openPopup()
