@@ -170,10 +170,6 @@ h1 {
     padding-left: 2.5em;
 }
 
-/* .congratulations td {
-    width: 100%;
-} */
-
 .congratulations h2 {
     margin: 0;
     text-align: right;
@@ -189,13 +185,42 @@ h1 {
     padding: 0.3em;
 }
 
-.congratulations .leader-board {
+.congratulations .leader-board-icon {
     cursor: pointer;
     padding: 0.3em;
 }
 .leader-board:hover {
-    
+
 }
 .material-icons {
     font-size: 36px;
+}
+
+/*
+ * Style of leader board
+ */
+
+.leader-board {
+    position: absolute;
+    width: 250px;
+    height: 550px;
+    top: 10%;
+    padding: 1.5em;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    background: linear-gradient(160deg, #5cfff1 0%, #cb96f5 100%);
+    /* display: none; */
+}
+
+.leader-board h1 {
+    text-align: center;
+}
+
+.leader-board table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.leader-board th {
+    text-align: center;
+    border: 1px solid #3dd4c8;
 }

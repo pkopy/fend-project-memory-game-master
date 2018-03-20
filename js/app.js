@@ -180,7 +180,7 @@ function incrementCounter(){
 
 
 /*
- * Leader Board
+ * Leader Board Storage
  */
 
 
