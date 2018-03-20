@@ -2,6 +2,14 @@
   .congratulations table {
     padding-left: 0;
   }
+
+  .congratulations h1 {
+    margin: 0;
+  }
+  .congratulations .restart {
+    float: left;
+    font-size: 2em;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -19,13 +27,19 @@
   .deck .card.show {
     font-size: 18px;
   }
-
+  
   .congratulations h1 {
     margin: 0;
   }
 
   .congratulations table {
     padding-left: 0;
+  }
+
+  .congratulations .restart {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 }
 
@@ -61,7 +75,7 @@
   }
   
   .win-popup {
-    padding: 1em;
+    padding: 1em 1em 0;
   }
   
   .congratulations {
