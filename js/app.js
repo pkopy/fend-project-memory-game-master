@@ -49,7 +49,8 @@ const deckOfCards = document.querySelector('.deck');
 const starsPanel = document.querySelector('.stars');
 const cards = document.querySelectorAll('.deck li');
 const stars = starsPanel.querySelectorAll('li');
-const restartButton = document.querySelector('.restart')
+const restartButton = document.querySelector('.restart');
+const restartButtonPopup = document.querySelector('.congratulations .restart')
 let startTime;
 let endTime;
 let score;
@@ -68,6 +69,10 @@ deckOfCards.addEventListener('click', function(evt){
 })
 
 restartButton.addEventListener('click', function(){
+    resetGame();
+})
+
+restartButtonPopup.addEventListener('click', function(){
     resetGame();
 })
 
@@ -133,7 +138,7 @@ function timeOfGame(){
 
     // End game
 
-    if(matchList.length === 8){
+    if(matchList.length === 1){
         endTime = Date.now() - startTime;
         score = (100 - Math.floor(endTime/1000)) + (100- counterOfMoves)
         addScoreToLeaderBoard({time: endTime/1000, score: score})
@@ -164,6 +169,8 @@ function resetGame(){
     matchList = [];
     openList = [];
     addRandomSymbolToCard(cards);
+    document.querySelector('.win-popup').style.display = "none";
+    document.querySelector('.win-popup-bg').style.display = "none";
 }
 
 function incrementCounter(){
@@ -248,10 +255,11 @@ function openPopup() {
     }
     increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7)
     changeSizeOfElement(document.querySelector('.win-popup'), heightElement);
-    document.querySelector('#score-time').innerHTML = (endTime/1000 + ' sec');
+    document.querySelector('#score-time').innerHTML = (Math.round(endTime/1000, 2) + ' sec');
     document.querySelector('#score-value').innerHTML = (score + '.00');
     setTimeout(function() {
         document.querySelector('table').style.display = 'inline-table';
-    },1000)
+        document.querySelector('.congratulations .restart').style.display = 'inline';
+    },800)
     
 }
