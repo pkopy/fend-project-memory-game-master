@@ -7,8 +7,9 @@
     margin: 0;
   }
   .congratulations .restart {
-    float: left;
     font-size: 2em;
+    display: inline-flex;
+    
   }
 }
 
@@ -35,12 +36,7 @@
   .congratulations table {
     padding-left: 0;
   }
-
-  .congratulations .restart {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
+  
 }
 
 @media screen and (max-width: 450px) {
@@ -96,5 +92,20 @@
   .congratulations table {
     
     padding-left: 0;
+  }
+
+  .congratulations .restart {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .congratulations .leader-board {
+    position: absolute;
+    right: 30px;
+    bottom: 0;
+  }
+  .material-icons {
+    font-size: 24px;
   }
 }

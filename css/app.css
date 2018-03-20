@@ -185,6 +185,17 @@ h1 {
 .congratulations .restart {
     float: left;
     cursor: pointer;
-    font-size: 3em;
-    display: none;
+    display: inline-flex;
+    padding: 0.3em;
+}
+
+.congratulations .leader-board {
+    cursor: pointer;
+    padding: 0.3em;
+}
+.leader-board:hover {
+    
+}
+.material-icons {
+    font-size: 36px;
 }

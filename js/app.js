@@ -184,6 +184,7 @@ function incrementCounter(){
  */
 
 
+
 function leaderBoardInit() {
     let isIE = /*@cc_on!@*/false || !!document.documentMode;
     let isEdge = !isIE && !!window.StyleMedia;
@@ -200,15 +201,25 @@ function sortObjectInArray(property) {
 
 
 function getLeaderBoard() {
-    let array =  JSON.parse(localStorage.leaderBoard); 
-    array.sort(sortObjectInArray("score"));
-    return array;
+    let isIE = /*@cc_on!@*/false || !!document.documentMode;
+    let isEdge = !isIE && !!window.StyleMedia;
+    if(!isEdge) {
+        let array =  JSON.parse(localStorage.leaderBoard); 
+        array.sort(sortObjectInArray("score"));
+        return array;
+
+    }
 }
 
 function addScoreToLeaderBoard(obj) {
-    let data = JSON.parse(localStorage.leaderBoard);
-    data.push(obj);
-    localStorage.leaderBoard = JSON.stringify(data)
+    let isIE = /*@cc_on!@*/false || !!document.documentMode;
+    let isEdge = !isIE && !!window.StyleMedia;
+    if(!isEdge) {
+        let data = JSON.parse(localStorage.leaderBoard);
+        data.push(obj);
+        localStorage.leaderBoard = JSON.stringify(data)
+
+    }
 }
 
 /*
@@ -259,7 +270,7 @@ function openPopup() {
     document.querySelector('#score-value').innerHTML = (score + '.00');
     setTimeout(function() {
         document.querySelector('table').style.display = 'inline-table';
-        document.querySelector('.congratulations .restart').style.display = 'inline';
+        // document.querySelector('.congratulations .restart').style.display = 'inline';
     },800)
     
 }
