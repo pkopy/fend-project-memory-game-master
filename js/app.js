@@ -138,7 +138,7 @@ function timeOfGame(){
 
     // End game
 
-    if(matchList.length === 1){
+    if(matchList.length === 8){
         endTime = Date.now() - startTime;
         score = (100 - Math.floor(endTime/1000)) + (100- counterOfMoves)
         addScoreToLeaderBoard({time: endTime/1000, score: score})
@@ -270,7 +270,6 @@ function openPopup() {
     document.querySelector('#score-value').innerHTML = (score + '.00');
     setTimeout(function() {
         document.querySelector('table').style.display = 'inline-table';
-        // document.querySelector('.congratulations .restart').style.display = 'inline';
     },800)
     
 }

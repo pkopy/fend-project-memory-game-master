@@ -186,6 +186,7 @@ h1 {
 }
 
 .congratulations .leader-board-icon {
+    float: left;
     cursor: pointer;
     padding: 0.3em;
 }
@@ -204,12 +205,12 @@ h1 {
     position: absolute;
     width: 250px;
     height: 550px;
-    top: 10%;
+    top: 5%;
     padding: 1.5em;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     background: linear-gradient(160deg, #5cfff1 0%, #cb96f5 100%);
-    /* display: none; */
+    display: none;
 }
 
 .leader-board h1 {
