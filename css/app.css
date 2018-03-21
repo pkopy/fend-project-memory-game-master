@@ -203,8 +203,8 @@ h1 {
 
 .leader-board {
     position: absolute;
-    width: 250px;
-    height: 550px;
+    width: 500px;
+    height: 800px;
     top: 5%;
     padding: 1.5em;
     border-radius: 10px;
@@ -221,6 +221,7 @@ h1 {
     width: 100%;
     border-collapse: collapse;
 }
+
 .leader-board th {
     text-align: center;
     border: 1px solid #3dd4c8;

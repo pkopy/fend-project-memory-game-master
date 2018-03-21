@@ -127,26 +127,6 @@ function addRandomSymbolToCard(array){
 /*
  * Score panel
  */
-console.log(window.innerWidth)
-function timeOfGame(){
-
-    // Start game
-
-    if(counterOfMoves === 1){
-        startTime = Date.now();
-    }
-
-    // End game
-
-    if(matchList.length === 8){
-        endTime = Date.now() - startTime;
-        score = (100 - Math.floor(endTime/1000)) + (100- counterOfMoves)
-        addScoreToLeaderBoard({time: endTime/1000, score: score})
-        openPopup();
-        let leaderBoard = getLeaderBoard();
-        console.log(leaderBoard);
-    }
-}
 
 function removeStarFromScorePanel(){
     if(counterOfMoves === 30){
@@ -178,12 +158,9 @@ function incrementCounter(){
     moveCounterDisplay.innerHTML = counterOfMoves;
 }
 
-
 /*
  * Leader Board Storage
  */
-
-
 
 function leaderBoardInit() {
     let isIE = /*@cc_on!@*/false || !!document.documentMode;
@@ -272,4 +249,28 @@ function openPopup() {
         document.querySelector('table').style.display = 'inline-table';
     },800)
     
+}
+
+/*
+ * End Game
+ */
+
+function timeOfGame(){
+
+    // Start game
+
+    if(counterOfMoves === 1){
+        startTime = Date.now();
+    }
+
+    // End game
+
+    if(matchList.length === 8){
+        endTime = Date.now() - startTime;
+        score = (100 - Math.floor(endTime/1000)) + (100- counterOfMoves)
+        addScoreToLeaderBoard({time: endTime/1000, score: score})
+        openPopup();
+        let leaderBoard = getLeaderBoard();
+        console.log(leaderBoard);
+    }
 }
