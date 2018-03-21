@@ -92,7 +92,7 @@
     height: 500px;
   }
 
-  .moves {
+  .move {
     display: none;
   }
   
@@ -182,6 +182,14 @@
 
   .congratulations img {
     width: 25px;
+  }
+  
+  /*
+   * Name Panel
+   */
+
+  .buttonOk h1, .name-panel input {
+    font-size: 20px;
   }
 
   /*

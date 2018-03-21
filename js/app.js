@@ -4,10 +4,7 @@
 const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt",
 "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
 "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
-let openList = [];
-let matchList = [];
-let moveCounterDisplay = document.querySelector('.moves');
-let counterOfMoves = 0;
+
 
 /*
  * Display the cards on the page
@@ -45,6 +42,11 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+
+let openList = [];
+let matchList = [];
+let moveCounterDisplay = document.querySelector('.moves');
+let counterOfMoves = 0;
 const deckOfCards = document.querySelector('.deck');
 const starsPanel = document.querySelector('.stars');
 const cards = document.querySelectorAll('.deck li');
@@ -52,12 +54,17 @@ const stars = starsPanel.querySelectorAll('li');
 const restartButton = document.querySelector('.restart');
 const restartButtonPopup = document.querySelector('.congratulations .restart')
 const leaderBoardButton = document.querySelector('.leader-board-icon');
+
 let startTime;
 let endTime;
 let score;
 
 addRandomSymbolToCard(cards);
 leaderBoardInit();
+
+/*
+ * Listeners
+ */
 
 deckOfCards.addEventListener('click', function(evt){
     if(!(evt.target.className === 'deck') && (openList.length <= 2)&& !(evt.target.isClicked === 1) && !(evt.target.localName === 'i')){
@@ -74,17 +81,22 @@ restartButton.addEventListener('click', function(){
 })
 
 restartButtonPopup.addEventListener('click', function(){
-    resetGame();
+    document.querySelector('.win-popup').style.display = "none";
+    openNamePanel()
 })
 
 leaderBoardButton.addEventListener('click', function() {
     openLeaderBoard();
 })
 
+/*
+ * Functions for game
+ */
+
 
 function showSymbol(evt){
-        evt.target.className ='card open show';
-        evt.target.isClicked = 1;
+    evt.target.className ='card open show';
+    evt.target.isClicked = 1;
 }
 
 function addCardToOpenList(evt){
@@ -190,7 +202,6 @@ function getLeaderBoard() {
         let array =  JSON.parse(localStorage.leaderBoard); 
         array.sort(sortObjectInArray("score"));
         return array;
-
     }
 }
 
@@ -214,7 +225,6 @@ function openLeaderBoard() {
     let scoreBoard = getLeaderBoard();
     const scoreTable = document.querySelector('.leader-board tbody');
     let scoreBoardLength = scoreBoard.length;
-    console.log(scoreBoard)
 
     if (window.innerWidth <= 600) {
         heightElement = 500;
@@ -243,9 +253,7 @@ function openLeaderBoard() {
 
     setTimeout(function() {
         document.querySelector('.leader-board table').style.display = 'inline-table';
-    },800)
-
-
+    },500)
 }
 
 /*
@@ -319,8 +327,24 @@ function openPopup() {
     
     setTimeout(function() {
         document.querySelector('table').style.display = 'inline-table';
-    },800)
+    },500)
     
+}
+/*
+ * Render name panel
+ */
+
+function openNamePanel() {
+    let heightElement = 250;
+    if (window.innerWidth <= 600) {
+        heightElement = 180;
+    }
+    if (window.innerWidth <= 450) {
+        heightElement = 150;
+    }
+
+    changeSizeOfElement(document.querySelector('.name-panel'), heightElement, 10, 20, 'inline-block');
+
 }
 
 /*
