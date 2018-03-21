@@ -190,9 +190,7 @@ h1 {
     cursor: pointer;
     padding: 0.3em;
 }
-.leader-board:hover {
 
-}
 .material-icons {
     font-size: 36px;
 }
@@ -220,9 +218,10 @@ h1 {
 .leader-board table {
     width: 100%;
     border-collapse: collapse;
+    display: none;
 }
 
-.leader-board th {
+.leader-board th, .leader-board td {
     text-align: center;
     border: 1px solid #3dd4c8;
 }

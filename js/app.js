@@ -211,28 +211,54 @@ function addScoreToLeaderBoard(obj) {
 
 function openLeaderBoard() {
     let heightElement = 800;
+    let scoreBoard = getLeaderBoard();
+    const scoreTable = document.querySelector('.leader-board tbody');
+    let scoreBoardLength = scoreBoard.length;
+    console.log(scoreBoard)
+
     if (window.innerWidth <= 600) {
         heightElement = 500;
     }
     if (window.innerWidth <= 450) {
         heightElement = 400;
     }
-    changeSizeOfElement(document.querySelector('.leader-board'), heightElement, 15, 10);
-    document.querySelector('.leader-board').style.display = 'inline-block';
+    changeSizeOfElement(document.querySelector('.leader-board'), heightElement, 15, 10, 'inline-block');
     document.querySelector('.win-popup').style.display = "none";
+
+    if(scoreBoardLength > 12) {
+        scoreBoardLength = 13
+    }
+    for (i = 0; i < scoreBoardLength; i++) {
+        let obj = scoreBoard[i];
+        const row = document.createElement('tr');
+        for (j = 0; j < Object.keys(obj).length; j++){
+            key = Object.keys(obj)[j];
+            const col = document.createElement('td');
+            col.innerHTML = obj[key];
+            col.className = key;
+            row.appendChild(col)
+        }
+        scoreTable.appendChild(row)
+    }
+
+    setTimeout(function() {
+        document.querySelector('.leader-board table').style.display = 'inline-table';
+    },800)
+
+
 }
 
 /*
  * Render congratulations popup
  */
 
-function changeSizeOfElement(element, widthElement = 400, countH = 10, countW = 20){
+function changeSizeOfElement(element, widthElement = 400, countH = 10, countW = 20, display){
     let countHeight = 0;
     let countWidth = 0;
     let id = setInterval(function(){
         countHeight += countH;
         countWidth += countW;
-        // element.style.display = 'inherit';
+        element.style.display = display;
         element.style.height = countHeight + 'px';
         element.style.width = countWidth  + 'px';
         element.style.opacity = widthElement/(widthElement * 3 - widthElement * 2);
@@ -267,16 +293,15 @@ function openPopup() {
     if (window.innerWidth <= 450) {
         heightElement = 160;
     }
-    document.querySelector('.win-popup').style.display = 'inherit';
-
+    
     increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7);
-
-    changeSizeOfElement(document.querySelector('.win-popup'), heightElement);
-
+    
+    changeSizeOfElement(document.querySelector('.win-popup'), heightElement, 10, 20, 'inherit');
+    
     document.querySelector('#score-time').innerHTML = (Math.round(endTime/1000, 2) + ' sec');
-
+    
     document.querySelector('#score-value').innerHTML = (score + '.00');
-
+    
     if (counterOfMoves <= 29) {
         document.querySelector('#score-stars').innerHTML = 
         `<img src="img/star__30x30.png" alt="star">
@@ -290,7 +315,8 @@ function openPopup() {
         document.querySelector('#score-stars').innerHTML = 
         `<img src="img/star__30x30.png" alt="star">`
     }
-
+    // document.querySelector('.win-popup').style.display = 'inherit';
+    
     setTimeout(function() {
         document.querySelector('table').style.display = 'inline-table';
     },800)
@@ -302,7 +328,7 @@ function openPopup() {
  */
 
 function timeOfGame(){
-
+    let nameOfPlayer;
     // Start game
 
     if(counterOfMoves === 1){
@@ -311,10 +337,10 @@ function timeOfGame(){
 
     // End game
 
-    if(matchList.length === 8){
+    if(matchList.length === 1){
         endTime = Date.now() - startTime;
         score = (100 - Math.floor(endTime/1000)) + (100- counterOfMoves)
-        addScoreToLeaderBoard({time: endTime/1000, score: score})
+        addScoreToLeaderBoard({name: nameOfPlayer = 'Joe Doe', score: score, time: endTime/1000, move: counterOfMoves})
         openPopup();
         let leaderBoard = getLeaderBoard();
         console.log(leaderBoard);

@@ -92,7 +92,7 @@
     height: 500px;
   }
 
-  .moves-leader-board {
+  .moves {
     display: none;
   }
   
@@ -193,7 +193,7 @@
     height: 400px;
   }
 
-  .moves-leader-board, .time-leader-board {
+  .moves, .time {
      display: none;
    }
 }
