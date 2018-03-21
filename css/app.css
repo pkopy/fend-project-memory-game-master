@@ -196,7 +196,31 @@ h1 {
 }
 
 /*
- * Style of leader board
+ * Style for Name Panel
+ */
+
+.name-panel {
+    position: absolute;
+    width: 250px;
+    height: 150px;
+    top: 5%;
+    padding: 1.5em;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    background: linear-gradient(160deg, #5cfff1 0%, #cb96f5 100%);
+    display: none;
+}
+
+.name-panel input {
+    background-color: rgb(0, 0, 0, 0);
+    border: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+
+/*
+ * Style for Leader Board
  */
 
 .leader-board {
