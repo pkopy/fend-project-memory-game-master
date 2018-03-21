@@ -245,6 +245,19 @@ function openPopup() {
     changeSizeOfElement(document.querySelector('.win-popup'), heightElement);
     document.querySelector('#score-time').innerHTML = (Math.round(endTime/1000, 2) + ' sec');
     document.querySelector('#score-value').innerHTML = (score + '.00');
+    if (counterOfMoves <= 29) {
+        document.querySelector('#score-stars').innerHTML = 
+        `<img src="img/star__30x30.png" alt="star">
+        <img src="img/star__30x30.png" alt="Szmebuldog">
+        <img src="img/star__30x30.png" alt="Szmebuldog">`;
+    } else if (counterOfMoves <= 49) {
+        document.querySelector('#score-stars').innerHTML = 
+        `<img src="img/star__30x30.png" alt="star">
+        <img src="img/star__30x30.png" alt="Szmebuldog">`;
+    } else {
+        document.querySelector('#score-stars').innerHTML = 
+        `<img src="img/star__30x30.png" alt="star">`
+    }
     setTimeout(function() {
         document.querySelector('table').style.display = 'inline-table';
     },800)
