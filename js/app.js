@@ -51,6 +51,7 @@ const cards = document.querySelectorAll('.deck li');
 const stars = starsPanel.querySelectorAll('li');
 const restartButton = document.querySelector('.restart');
 const restartButtonPopup = document.querySelector('.congratulations .restart')
+const leaderBoardButton = document.querySelector('.leader-board-icon');
 let startTime;
 let endTime;
 let score;
@@ -75,6 +76,11 @@ restartButton.addEventListener('click', function(){
 restartButtonPopup.addEventListener('click', function(){
     resetGame();
 })
+
+leaderBoardButton.addEventListener('click', function() {
+    openLeaderBoard();
+})
+
 
 function showSymbol(evt){
         evt.target.className ='card open show';
@@ -200,20 +206,37 @@ function addScoreToLeaderBoard(obj) {
 }
 
 /*
- * Animation congratulations popup
+ * Render Leader board
  */
 
-function changeSizeOfElement(element, heightElement = 400, widthElement = 0){
+function openLeaderBoard() {
+    let heightElement = 800;
+    if (window.innerWidth <= 600) {
+        heightElement = 500;
+    }
+    if (window.innerWidth <= 450) {
+        heightElement = 400;
+    }
+    changeSizeOfElement(document.querySelector('.leader-board'), heightElement, 15, 10);
+    document.querySelector('.leader-board').style.display = 'inline-block';
+    document.querySelector('.win-popup').style.display = "none";
+}
+
+/*
+ * Render congratulations popup
+ */
+
+function changeSizeOfElement(element, widthElement = 400, countH = 10, countW = 20){
     let countHeight = 0;
     let countWidth = 0;
     let id = setInterval(function(){
-        countHeight+=10;
-        countWidth+=20;
-        element.style.display = 'inherit';
+        countHeight += countH;
+        countWidth += countW;
+        // element.style.display = 'inherit';
         element.style.height = countHeight + 'px';
         element.style.width = countWidth  + 'px';
-        element.style.opacity = heightElement/(heightElement * 3 - countHeight * 2);
-        if(countHeight >= heightElement){
+        element.style.opacity = widthElement/(widthElement * 3 - widthElement * 2);
+        if(countHeight >= widthElement){
             clearInterval(id)
         }
     }, 5);
@@ -238,13 +261,22 @@ function openPopup() {
     if (window.innerWidth < 900) {
         heightElement = 305;
     }
-    if (window.innerWidth < 450) {
+    if (window.innerWidth <= 600) {
+        heightElement = 250;
+    }
+    if (window.innerWidth <= 450) {
         heightElement = 160;
     }
-    increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7)
+    document.querySelector('.win-popup').style.display = 'inherit';
+
+    increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7);
+
     changeSizeOfElement(document.querySelector('.win-popup'), heightElement);
+
     document.querySelector('#score-time').innerHTML = (Math.round(endTime/1000, 2) + ' sec');
+
     document.querySelector('#score-value').innerHTML = (score + '.00');
+
     if (counterOfMoves <= 29) {
         document.querySelector('#score-stars').innerHTML = 
         `<img src="img/star__30x30.png" alt="star">
@@ -258,6 +290,7 @@ function openPopup() {
         document.querySelector('#score-stars').innerHTML = 
         `<img src="img/star__30x30.png" alt="star">`
     }
+
     setTimeout(function() {
         document.querySelector('table').style.display = 'inline-table';
     },800)

@@ -226,3 +226,10 @@ h1 {
     text-align: center;
     border: 1px solid #3dd4c8;
 }
+
+.leader-board .restart {
+    display: inline-flex;
+    position: absolute;
+    left: 46%;
+    bottom: 20px;
+}
