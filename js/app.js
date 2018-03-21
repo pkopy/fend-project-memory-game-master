@@ -54,11 +54,12 @@ const stars = starsPanel.querySelectorAll('li');
 const restartButton = document.querySelector('.restart');
 const restartButtonPopup = document.querySelector('.congratulations .restart')
 const leaderBoardButton = document.querySelector('.leader-board-icon');
-
+const submitNameButton = document.querySelector('.buttonOk')
 let startTime;
 let endTime;
 let score;
-
+let nameOfPlayer;
+console.log(submitNameButton.previousElementSibling)
 addRandomSymbolToCard(cards);
 leaderBoardInit();
 
@@ -82,7 +83,17 @@ restartButton.addEventListener('click', function(){
 
 restartButtonPopup.addEventListener('click', function(){
     document.querySelector('.win-popup').style.display = "none";
-    openNamePanel()
+    openNamePanel();
+})
+
+submitNameButton.addEventListener('click', function() {
+    nameOfPlayer = submitNameButton.previousElementSibling.value;
+    if(nameOfPlayer === '') {
+        nameOfPlayer = 'Joe Doe'
+    }
+    addScoreToLeaderBoard({name: nameOfPlayer, score: score, time: endTime/1000, move: counterOfMoves})
+    document.querySelector('.name-panel').style.display = "none";
+    resetGame();
 })
 
 leaderBoardButton.addEventListener('click', function() {
@@ -352,7 +363,7 @@ function openNamePanel() {
  */
 
 function timeOfGame(){
-    let nameOfPlayer;
+    
     // Start game
 
     if(counterOfMoves === 1){
@@ -364,7 +375,7 @@ function timeOfGame(){
     if(matchList.length === 1){
         endTime = Date.now() - startTime;
         score = (100 - Math.floor(endTime/1000)) + (100- counterOfMoves)
-        addScoreToLeaderBoard({name: nameOfPlayer = 'Joe Doe', score: score, time: endTime/1000, move: counterOfMoves})
+        
         openPopup();
         let leaderBoard = getLeaderBoard();
         console.log(leaderBoard);

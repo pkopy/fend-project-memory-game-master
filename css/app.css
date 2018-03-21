@@ -272,3 +272,8 @@ h1 {
     left: 46%;
     bottom: 20px;
 }
+
+.leader-board-text h4 {
+    margin: 0;
+    cursor: pointer;
+}
