@@ -88,14 +88,16 @@ restartButton.addEventListener('click', function () {
 
 restartButtonPopup.addEventListener('click', function () {
     document.querySelector('.win-popup').style.display = "none";
-    document.addEventListener('keydown', function pushEnter(evt) {
-        if (evt.keyCode === 13) {
-            clickNameButton();
-            this.removeEventListener('keydown', pushEnter);
-        }
-    })
+    document.addEventListener('keydown', pushEnter)
     openNamePanel();
 })
+
+function pushEnter(evt) {
+    if (evt.keyCode === 13) {
+        clickNameButton();
+        this.removeEventListener('keydown', pushEnter);
+    }
+}
 
 resetLeaderButton.addEventListener('click', clickResetLeaderButton);
 
@@ -116,6 +118,7 @@ function clickNameButton() {
     document.querySelector('.name-panel').style.display = "none";
     increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7);
     openLeaderBoard();
+    document.removeEventListener('keydown', pushEnter)
 }
 
 leaderBoardText.addEventListener('click', function () {
@@ -413,7 +416,7 @@ function timeOfGame() {
 
     // End game
 
-    if (matchList.length === 8) {
+    if (matchList.length === 1) {
         endTime = Date.now() - startTime;
         score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves)
         openPopup();
