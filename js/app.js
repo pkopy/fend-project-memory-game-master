@@ -102,6 +102,9 @@ function pushEnter(evt) {
 resetLeaderButton.addEventListener('click', clickResetLeaderButton);
 
 function clickResetLeaderButton() {
+    if (matchList.length === 8) {
+        resetGame();
+    }
     clearTableofLeaderBoard();
     document.querySelector('.leader-board').style.display = "none";
     document.querySelector('.win-popup-bg').style.display = "none";
