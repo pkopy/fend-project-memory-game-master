@@ -62,6 +62,9 @@ let startTime;
 let endTime;
 let score;
 let nameOfPlayer;
+let timerInterval
+let timerCounter = 0;
+let timerMin = 0;
 
 addRandomSymbolToCard(cards);
 leaderBoardInit();
@@ -77,7 +80,13 @@ deckOfCards.addEventListener('click', function (evt) {
         showSymbol(evt);
         addCardToOpenList(evt);
         incrementCounter();
+        if (counterOfMoves === 1) {
+            timerInterval = setInterval(function () {
+                startTimer();
+            }, 1000);
+        }
         timeOfGame();
+
         removeStarFromScorePanel();
     }
 })
@@ -104,6 +113,7 @@ resetLeaderButton.addEventListener('click', clickResetLeaderButton);
 function clickResetLeaderButton() {
     if (matchList.length === 8) {
         resetGame();
+        document.querySelector('.timer').innerHTML = '00:00'
     }
     clearTableofLeaderBoard();
     document.querySelector('.leader-board').style.display = "none";
@@ -182,6 +192,28 @@ function addRandomSymbolToCard(array) {
         array[i].firstElementChild.className = shuffleListOfCards[i];
     }
 }
+
+function startTimer() {
+    let sec;
+    timerCounter++
+    sec = timerCounter;
+    if (timerCounter === 60) {
+        timerMin++;
+        sec = 0;
+        timerCounter = 0;
+    }
+    document.querySelector('.timer').innerHTML = addZeroToTimer(timerMin) + ':' + addZeroToTimer(sec);
+}
+
+function addZeroToTimer(number) {
+    if (number < 10) {
+        return '0' + number;
+    } else {
+        return number;
+    }
+
+}
+
 
 /*
  * Score panel
@@ -422,6 +454,9 @@ function timeOfGame() {
     if (matchList.length === 8) {
         endTime = Date.now() - startTime;
         score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves)
+        clearInterval(timerInterval);
+        timerCounter = 0;
+        timerMin = 0;
         openPopup();
     }
 }
