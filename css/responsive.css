@@ -201,7 +201,7 @@
     height: 400px;
   }
 
-  .moves, .time {
+  .move, .time {
      display: none;
    }
 }

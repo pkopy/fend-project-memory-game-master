@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Matching Game</title>
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
 
     <div class="container">
@@ -21,17 +23,23 @@
         </header>
 
         <section class="score-panel">
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        	</ul>
+            <ul class="stars">
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+            </ul>
 
-        	<span class="moves"></span> Moves
+            <span class="moves">0</span> Moves
 
             <div class="restart">
-        		<i class="fa fa-repeat"></i>
-        	</div>
+                <i class="fa fa-repeat"></i>
+            </div>
         </section>
 
         <!-- Main deck -->
@@ -96,7 +104,7 @@
         <div class="win-popup">
             <div class="congratulations">
                 <h1>Awesome!!!</h1>
-                <table >
+                <table>
                     <tr>
                         <td class="left">
                             <h2>Your score is: </h2>
@@ -125,7 +133,7 @@
                         <td>
                             <div class="restart">
                                 <i class="material-icons">rotate_right</i>
-                                
+
                             </div>
                             <!-- <div class="leader-board-icon">
                                 <i class="material-icons">assignment</i>
@@ -142,12 +150,14 @@
 
         <div class="name-panel">
             <input type="text" id="uname" name="name" placeholder="Type Your name">
-            <div class="buttonOk"><h1>SUBMIT</h1></div>
+            <div class="buttonOk">
+                <h1>SUBMIT</h1>
+            </div>
 
         </div>
 
         <!-- Leader Board -->
-        
+
         <div class="leader-board">
             <h1>TOP SCORES</h1>
             <table>
@@ -159,7 +169,7 @@
                 </tr>
             </table>
             <div class="restart">
-                <i class="material-icons">rotate_right</i> 
+                <i class="material-icons">rotate_right</i>
             </div>
         </div>
 
@@ -170,4 +180,5 @@
 
     <script src="js/app.js"></script>
 </body>
+
 </html>
