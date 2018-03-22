@@ -86,7 +86,6 @@ deckOfCards.addEventListener('click', function (evt) {
             }, 1000);
         }
         timeOfGame();
-
         removeStarFromScorePanel();
     }
 })
@@ -97,7 +96,7 @@ restartButton.addEventListener('click', function () {
 
 restartButtonPopup.addEventListener('click', function () {
     document.querySelector('.win-popup').style.display = "none";
-    document.addEventListener('keydown', pushEnter)
+    document.addEventListener('keydown', pushEnter);
     openNamePanel();
 })
 
@@ -113,7 +112,7 @@ resetLeaderButton.addEventListener('click', clickResetLeaderButton);
 function clickResetLeaderButton() {
     if (matchList.length === 8) {
         resetGame();
-        document.querySelector('.timer').innerHTML = '00:00'
+
     }
     clearTableofLeaderBoard();
     document.querySelector('.leader-board').style.display = "none";
@@ -131,7 +130,7 @@ function clickNameButton() {
     document.querySelector('.name-panel').style.display = "none";
     increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7);
     openLeaderBoard();
-    document.removeEventListener('keydown', pushEnter)
+    document.removeEventListener('keydown', pushEnter);
 }
 
 leaderBoardText.addEventListener('click', function () {
@@ -182,7 +181,6 @@ function clearTheOpenList(array) {
     for (let i = 0; i < 2; i++) {
         array.shift();
     }
-
     return array;
 }
 
@@ -229,12 +227,13 @@ function removeStarFromScorePanel() {
 
 function resetGame() {
     for (let card of cards) {
-        card.className = "card close"
+        card.className = "card close";
         card.isClicked = 0;
     }
     for (star of stars) {
-        star.style.visibility = 'visible'
+        star.style.visibility = 'visible';
     }
+    stopTimer();
     counterOfMoves = 0;
     moveCounterDisplay.innerHTML = counterOfMoves;
     matchList = [];
@@ -257,7 +256,7 @@ function leaderBoardInit() {
     let isIE = /*@cc_on!@*/false || !!document.documentMode;
     let isEdge = !isIE && !!window.StyleMedia;
     if (!isEdge && !localStorage.leaderBoard) {
-        localStorage.leaderBoard = JSON.stringify([])
+        localStorage.leaderBoard = JSON.stringify([]);
     }
 }
 
@@ -281,7 +280,7 @@ function addScoreToLeaderBoard(obj) {
     if (!isEdge) {
         let data = JSON.parse(localStorage.leaderBoard);
         data.push(obj);
-        localStorage.leaderBoard = JSON.stringify(data)
+        localStorage.leaderBoard = JSON.stringify(data);
 
     }
 }
@@ -307,7 +306,7 @@ function openLeaderBoard() {
 
     setTimeout(function () {
         document.querySelector('.leader-board table').style.display = 'inline-table';
-    }, 500)
+    }, 500);
 }
 
 function pushTableToLeaderBoard() {
@@ -334,9 +333,9 @@ function pushTableToLeaderBoard() {
             const col = document.createElement('td');
             col.innerHTML = obj[key];
             col.className = key;
-            row.appendChild(col)
+            row.appendChild(col);
         }
-        scoreTable.appendChild(row)
+        scoreTable.appendChild(row);
     }
 }
 
@@ -369,16 +368,16 @@ function changeSizeOfElement(element, widthElement = 400, countH = 10, countW = 
 }
 
 function increaseOfOpacity(element, opacity) {
-    let countOpacity = 0
+    let countOpacity = 0;
     element.style.opacity = 0;
     element.style.display = 'inherit';
     let id = setInterval(function () {
         countOpacity += 0.02;
         element.style.opacity = countOpacity;
         if (countOpacity >= opacity) {
-            clearInterval(id)
+            clearInterval(id);
         }
-    }, 10)
+    }, 10);
 }
 
 function openPopup() {
@@ -432,9 +431,7 @@ function openNamePanel() {
     if (window.innerWidth <= 450) {
         heightElement = 150;
     }
-
     changeSizeOfElement(document.querySelector('.name-panel'), heightElement, 10, 20, 'inline-block');
-
 }
 
 /*
@@ -453,10 +450,15 @@ function timeOfGame() {
 
     if (matchList.length === 8) {
         endTime = Date.now() - startTime;
-        score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves)
-        clearInterval(timerInterval);
-        timerCounter = 0;
-        timerMin = 0;
+        score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves);
         openPopup();
+        stopTimer();
     }
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+    timerCounter = 0;
+    timerMin = 0;
+    document.querySelector('.timer').innerHTML = '00:00';
 }
