@@ -121,6 +121,10 @@ h1 {
     transition: transform 1s;
 
 }
+.score-panel .timer {
+    display: inline-flex;
+    margin-left: 5em;
+}
 
 /*
  * Styles for the Congratulations Popup
