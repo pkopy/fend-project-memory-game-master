@@ -54,14 +54,19 @@ const stars = starsPanel.querySelectorAll('li');
 const restartButton = document.querySelector('.restart');
 const restartButtonPopup = document.querySelector('.congratulations .restart')
 const leaderBoardButton = document.querySelector('.leader-board-icon');
-const submitNameButton = document.querySelector('.buttonOk')
+const submitNameButton = document.querySelector('.buttonOk');
+const leaderBoardText = document.querySelector('.leader-board-text');
+const resetLeaderButton = document.querySelector('.leader-board .restart')
+const scoreTable = document.querySelector('.leader-board tbody');
 let startTime;
 let endTime;
 let score;
 let nameOfPlayer;
-console.log(submitNameButton.previousElementSibling)
+
 addRandomSymbolToCard(cards);
 leaderBoardInit();
+
+
 
 /*
  * Listeners
@@ -83,22 +88,42 @@ restartButton.addEventListener('click', function(){
 
 restartButtonPopup.addEventListener('click', function(){
     document.querySelector('.win-popup').style.display = "none";
+    document.addEventListener('keydown', function pushEnter(evt) {
+        if(evt.keyCode === 13) {
+            clickNameButton();
+            this.removeEventListener('keydown', pushEnter);
+
+        }
+    })
     openNamePanel();
 })
 
-submitNameButton.addEventListener('click', function() {
+resetLeaderButton.addEventListener('click', clickResetLeaderButton);
+
+function clickResetLeaderButton() {
+    resetGame();
+    clearTableofLeaderBoard();
+    document.querySelector('.leader-board').style.display = "none";
+}
+
+submitNameButton.addEventListener('click', clickNameButton);
+
+function clickNameButton() {
     nameOfPlayer = submitNameButton.previousElementSibling.value;
     if(nameOfPlayer === '') {
         nameOfPlayer = 'Joe Doe'
     }
-    addScoreToLeaderBoard({name: nameOfPlayer, score: score, time: endTime/1000, move: counterOfMoves})
+    addScoreToLeaderBoard({name: nameOfPlayer, score: score, time: endTime/1000, move: counterOfMoves});
     document.querySelector('.name-panel').style.display = "none";
-    resetGame();
-})
+    increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7);
+    openLeaderBoard();
+}
 
-leaderBoardButton.addEventListener('click', function() {
+leaderBoardText.addEventListener('click', function() {
+    increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7);
     openLeaderBoard();
 })
+
 
 /*
  * Functions for game
@@ -204,8 +229,6 @@ function sortObjectInArray(property) {
     return (a, b) => (a[property] < b[property]) ? 1 : (a[property] > b[property]) ? -1 : 0;
 }
     
-
-
 function getLeaderBoard() {
     let isIE = /*@cc_on!@*/false || !!document.documentMode;
     let isEdge = !isIE && !!window.StyleMedia;
@@ -233,11 +256,8 @@ function addScoreToLeaderBoard(obj) {
 
 function openLeaderBoard() {
     let heightElement = 800;
-    let scoreBoard = getLeaderBoard();
-    const scoreTable = document.querySelector('.leader-board tbody');
-    let scoreBoardLength = scoreBoard.length;
 
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 600 ) {
         heightElement = 500;
     }
     if (window.innerWidth <= 450) {
@@ -246,9 +266,30 @@ function openLeaderBoard() {
     changeSizeOfElement(document.querySelector('.leader-board'), heightElement, 15, 10, 'inline-block');
     document.querySelector('.win-popup').style.display = "none";
 
-    if(scoreBoardLength > 12) {
-        scoreBoardLength = 13
+    pushTableToLeaderBoard();
+    
+
+    setTimeout(function() {
+        document.querySelector('.leader-board table').style.display = 'inline-table';
+    },500)
+}
+
+function pushTableToLeaderBoard() {
+    let scoreBoard = getLeaderBoard();
+    let scoreBoardLength = scoreBoard.length;
+    
+    if(scoreBoardLength > 8 && window.innerWidth <= 450) {
+        scoreBoardLength = 8;
     }
+
+    if(scoreBoardLength > 12 && window.innerWidth <= 600) {
+        scoreBoardLength = 12;
+    }
+
+    if(scoreBoardLength > 23) {
+        scoreBoardLength = 23;
+    }
+
     for (i = 0; i < scoreBoardLength; i++) {
         let obj = scoreBoard[i];
         const row = document.createElement('tr');
@@ -261,10 +302,13 @@ function openLeaderBoard() {
         }
         scoreTable.appendChild(row)
     }
+}
 
-    setTimeout(function() {
-        document.querySelector('.leader-board table').style.display = 'inline-table';
-    },500)
+function clearTableofLeaderBoard() {
+    let rowsTable = scoreTable.querySelectorAll('tr');
+    for(i = rowsTable.length-1; i > 0; i--) {
+        scoreTable.removeChild(rowsTable[i]);
+    }
 }
 
 /*
@@ -375,9 +419,6 @@ function timeOfGame(){
     if(matchList.length === 1){
         endTime = Date.now() - startTime;
         score = (100 - Math.floor(endTime/1000)) + (100- counterOfMoves)
-        
         openPopup();
-        let leaderBoard = getLeaderBoard();
-        console.log(leaderBoard);
     }
 }

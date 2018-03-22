@@ -20,12 +20,12 @@
     padding: 24px;
   }
 
-  .congratulations .leader-board-icon {
+  /* .congratulations .leader-board-icon {
     position: absolute;
     left: 80px;
     bottom: -23px;
     padding: 24px;
-  }
+  } */
 }
 
 @media screen and (max-width: 600px) {
@@ -76,12 +76,12 @@
     padding: 24px;
   }
 
-  .congratulations .leader-board-icon {
+  /* .congratulations .leader-board-icon {
     position: absolute;
     left: 80px;
     bottom: -23px;
     padding: 24px;
-  }
+  } */
 
   /*
    * Leader board
@@ -173,12 +173,12 @@
     padding: 24px;
   }
 
-  .congratulations .leader-board-icon {
+  /* .congratulations .leader-board-icon {
     position: absolute;
     left: 0;
     bottom: 83px;
     padding: 24px;
-  }
+  } */
 
   .congratulations img {
     width: 25px;
