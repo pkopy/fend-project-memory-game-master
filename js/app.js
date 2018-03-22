@@ -102,9 +102,9 @@ function pushEnter(evt) {
 resetLeaderButton.addEventListener('click', clickResetLeaderButton);
 
 function clickResetLeaderButton() {
-    resetGame();
     clearTableofLeaderBoard();
     document.querySelector('.leader-board').style.display = "none";
+    document.querySelector('.win-popup-bg').style.display = "none";
 }
 
 submitNameButton.addEventListener('click', clickNameButton);
@@ -416,7 +416,7 @@ function timeOfGame() {
 
     // End game
 
-    if (matchList.length === 1) {
+    if (matchList.length === 8) {
         endTime = Date.now() - startTime;
         score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves)
         openPopup();
