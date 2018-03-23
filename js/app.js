@@ -42,11 +42,15 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-
+let objectOfVariable = {
+    openList: [],
+    matchList: [],
+    counterOfMoves: 0,
+}
 let openList = [];
 let matchList = [];
-let moveCounterDisplay = document.querySelector('.moves');
 let counterOfMoves = 0;
+const moveCounterDisplay = document.querySelector('.moves');
 const deckOfCards = document.querySelector('.deck');
 const starsPanel = document.querySelector('.stars');
 const cards = document.querySelectorAll('.deck li');
@@ -60,9 +64,7 @@ const resetLeaderButton = document.querySelector('.leader-board .restart')
 const scoreTable = document.querySelector('.leader-board tbody');
 let startTime;
 let endTime;
-let score;
-let nameOfPlayer;
-let timerInterval
+let timerInterval;
 let timerCounter = 0;
 let timerMin = 0;
 
@@ -122,11 +124,11 @@ function clickResetLeaderButton() {
 submitNameButton.addEventListener('click', clickNameButton);
 
 function clickNameButton() {
-    nameOfPlayer = submitNameButton.previousElementSibling.value;
+    let nameOfPlayer = submitNameButton.previousElementSibling.value;
     if (nameOfPlayer === '') {
         nameOfPlayer = 'Joe Doe'
     }
-    addScoreToLeaderBoard({ name: nameOfPlayer, score: score, time: endTime / 1000, move: counterOfMoves });
+    addScoreToLeaderBoard({ name: nameOfPlayer, score: getScore(), time: endTime / 1000, move: counterOfMoves });
     document.querySelector('.name-panel').style.display = "none";
     increaseOfOpacity(document.querySelector('.win-popup-bg'), 0.7);
     openLeaderBoard();
@@ -241,6 +243,15 @@ function resetGame() {
     addRandomSymbolToCard(cards);
     document.querySelector('.win-popup').style.display = "none";
     document.querySelector('.win-popup-bg').style.display = "none";
+}
+function getCounterOfMoves() {
+    let counterOfMoves = 0;
+    return counterOfMoves;
+}
+
+function setCounterOfMoves(number) {
+    
+
 }
 
 function incrementCounter() {
@@ -398,7 +409,7 @@ function openPopup() {
 
     document.querySelector('#score-time').innerHTML = (Math.round(endTime / 1000, 2) + ' sec');
 
-    document.querySelector('#score-value').innerHTML = (score + '.00');
+    document.querySelector('#score-value').innerHTML = (getScore() + '.00');
 
     if (counterOfMoves <= 29) {
         document.querySelector('#score-stars').innerHTML =
@@ -439,6 +450,8 @@ function openNamePanel() {
  */
 
 function timeOfGame() {
+    // let startTime;
+    // let endTime;
 
     // Start game
 
@@ -448,12 +461,18 @@ function timeOfGame() {
 
     // End game
 
-    if (matchList.length === 8) {
+    if (matchList.length === 1) {
         endTime = Date.now() - startTime;
-        score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves);
+        // score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves);
         openPopup();
         stopTimer();
     }
+    
+}
+
+function getScore () {
+    let score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves);
+    return score;
 }
 
 function stopTimer() {
