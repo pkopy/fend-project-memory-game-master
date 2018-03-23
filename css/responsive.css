@@ -186,20 +186,14 @@
 
   .congratulations .restart {
     position: absolute;
-    left: 225px;
-    bottom: 90px;
+    left: 100px;
+    bottom: 0;
     padding: 24px;
   }
 
-  /* .congratulations .leader-board-icon {
-    position: absolute;
-    left: 0;
-    bottom: 83px;
-    padding: 24px;
-  } */
 
   .congratulations img {
-    width: 25px;
+    width: 18px;
   }
   
   /*

@@ -115,7 +115,6 @@ resetLeaderButton.addEventListener('click', clickResetLeaderButton);
 function clickResetLeaderButton() {
     if (matchList.length === 8) {
         resetGame();
-
     }
     clearTableofLeaderBoard();
     document.querySelector('.leader-board').style.display = "none";
@@ -419,7 +418,7 @@ function openPopup() {
 
     document.querySelector('#score-time').innerHTML = (Math.round(endTime / 1000, 2) + ' sec');
 
-    document.querySelector('#score-value').innerHTML = (getScore() + '.00');
+    document.querySelector('#score-moves').innerHTML = (counterOfMoves);
 
     if (counterOfMoves <= 29) {
         document.querySelector('#score-stars').innerHTML =
@@ -471,7 +470,7 @@ function timeOfGame() {
 
     // End game
 
-    if (matchList.length === 1) {
+    if (matchList.length === 8) {
         endTime = Date.now() - startTime;
         // score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves);
         openPopup();
