@@ -271,6 +271,7 @@ h1 {
 }
 
 .leader-board .restart {
+    cursor: pointer;
     display: inline-flex;
     position: absolute;
     left: 46%;
