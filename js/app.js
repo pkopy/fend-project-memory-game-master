@@ -47,6 +47,7 @@ let objectOfVariable = {
     matchList: [],
     counterOfMoves: 0,
 }
+
 let openList = [];
 let matchList = [];
 let counterOfMoves = 0;
@@ -262,6 +263,15 @@ function incrementCounter() {
 /*
  * Leader Board Storage
  */
+
+
+ /* this section creates a new localstore file and put to it empty array,
+  * check browser - if is Edge new localstorage is not create.
+  * Edge browser -  breakdown script with: "SCRIPT16389: Unspecified error"
+  * Array is sorted from the best score to the worst store
+  * Result is put to the array.
+  */
+
 
 function leaderBoardInit() {
     let isIE = /*@cc_on!@*/false || !!document.documentMode;

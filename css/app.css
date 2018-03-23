@@ -96,8 +96,9 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 550px;
     margin-bottom: 10px;
+    font-size: 2em;
 }
 
 .score-panel .stars {
@@ -116,15 +117,19 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
 .restart:hover {
     transform: rotate(360deg);
     transition: transform 1s;
 
 }
+
 .score-panel .timer {
     display: inline-flex;
     margin-left: 5em;
 }
+
+
 
 /*
  * Styles for the Congratulations Popup

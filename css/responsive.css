@@ -25,6 +25,17 @@
 @media screen and (max-width: 600px) {
 
   /*
+   * Score panel
+   */ 
+
+   .score-panel {
+    text-align: left;
+    width: 380px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+  /*
    * Main deck
    */
 
@@ -122,10 +133,19 @@
     padding: 0 0 0 1em;
   }
 
+  /*
+   * Score panel
+   */ 
+
+   .score-panel {
+    text-align: left;
+    width: 280px;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
   .score-panel .restart {
     float: right;
     cursor: pointer;
-    margin-right: 2em;
   }
   
   .score-panel .timer {
