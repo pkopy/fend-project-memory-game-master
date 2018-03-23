@@ -459,8 +459,6 @@ function openNamePanel() {
  */
 
 function timeOfGame() {
-    // let startTime;
-    // let endTime;
 
     // Start game
 
@@ -472,7 +470,6 @@ function timeOfGame() {
 
     if (matchList.length === 8) {
         endTime = Date.now() - startTime;
-        // score = (100 - Math.floor(endTime / 1000)) + (100 - counterOfMoves);
         openPopup();
         stopTimer();
     }
