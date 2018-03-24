@@ -80,13 +80,15 @@
     bottom: -20px;
     padding: 24px;
   }
+  
+  /*
+   * Name panel
+   */
 
-  /* .congratulations .leader-board-icon {
-    position: absolute;
-    left: 80px;
-    bottom: -23px;
-    padding: 24px;
-  } */
+  .buttonOk h1, .name-panel input, .name-panel table h1{
+    font-size: 20px;
+  }
+  
 
   /*
    * Leader board
@@ -95,6 +97,10 @@
    .leader-board {
     width: 300px;
     height: 500px;
+  }
+
+  .leader-board .restart {
+    margin-left: 35%;
   }
 
   .move {
@@ -199,7 +205,11 @@
   /*
    * Name Panel
    */
-
+  
+  .buttonOk {
+    margin-top: 0.3em;
+  }
+  
   .buttonOk h1, .name-panel input {
     font-size: 20px;
   }

@@ -104,6 +104,8 @@
         }
     })
     
+    //restart button on main board
+
     restartButton.addEventListener('click', function () {
         resetGame();
     })
@@ -476,6 +478,7 @@
             heightElement = 150;
         }
         changeSizeOfElement(document.querySelector('.name-panel'), heightElement, 10, 20, 'inline-block');
+        document.querySelector('.score-value').innerHTML = getScore();
     }
     
     /*

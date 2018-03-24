@@ -116,6 +116,7 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    display: inline-flex;
 }
 
 .restart:hover {
@@ -230,12 +231,21 @@ h1 {
     font-family: 'Coda', cursive;
 }
 
+.name-panel td h1 {
+    margin: 0.3em;
+}
+
+.name-panel table {
+    text-align: center;
+    width: 80%;
+}
+
 .buttonOk {
     
     cursor: pointer;
     margin-left: auto;
     margin-right:  auto;
-    margin-top: 2em;
+    margin-top: 1.2em;
     text-align:  center;
 
 }
@@ -278,10 +288,11 @@ h1 {
 .leader-board .restart {
     cursor: pointer;
     display: inline-flex;
-    position: absolute;
-    left: 46%;
+    margin-left: 40%;
     bottom: 20px;
+    padding: 24px;
 }
+
 
 .leader-board-text h4 {
     margin: 0;
